@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Children, isValidElement, ReactNode } from 'react';
-import { Alert, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Alert, Linking, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { SettingRow } from '../components/SettingRow';
 import { Toggle } from '../components/Toggle';
@@ -11,6 +11,15 @@ import { spacing } from '../theme/spacing';
 import { typography } from '../theme/typography';
 import { RootStackScreenProps } from '../types/navigation';
 import { formatTime } from '../utils/formatTime';
+
+export const PRIVACY_POLICY_URL = 'https://nawadeakshay.github.io/memory_match_game/privacy-policy.html';
+
+function openPrivacyPolicy() {
+  Linking.openURL(PRIVACY_POLICY_URL).catch(() => {
+    Alert.alert('Privacy Policy', `Couldn't open the browser. You can read it at:
+${PRIVACY_POLICY_URL}`);
+  });
+}
 
 export function SettingsScreen({ navigation }: RootStackScreenProps<'Settings'>) {
   const { colors, preference, setPreference, reduceMotion, setReduceMotion } = useTheme();
@@ -77,6 +86,10 @@ export function SettingsScreen({ navigation }: RootStackScreenProps<'Settings'>)
 
         <Section title="Account">
           <SettingRow label="Reset Statistics" icon="trash-outline" onPress={handleResetStatistics} danger />
+        </Section>
+
+        <Section title="About">
+          <SettingRow label="Privacy Policy" icon="shield-checkmark-outline" onPress={openPrivacyPolicy} />
         </Section>
       </ScrollView>
     </SafeAreaView>
