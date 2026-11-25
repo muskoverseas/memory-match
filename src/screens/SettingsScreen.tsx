@@ -12,7 +12,7 @@ import { typography } from '../theme/typography';
 import { RootStackScreenProps } from '../types/navigation';
 import { formatTime } from '../utils/formatTime';
 
-export const PRIVACY_POLICY_URL = 'https://nawadeakshay.github.io/memory_match_game/privacy-policy.html';
+export const PRIVACY_POLICY_URL = 'https://muskoverseas.github.io/memory-match/privacy-policy.html';
 
 function openPrivacyPolicy() {
   Linking.openURL(PRIVACY_POLICY_URL).catch(() => {
